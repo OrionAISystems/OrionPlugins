@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  repository-shape:
+    name: Repository shape
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate required files
+        shell: bash
+        run: |
+          test -f README.md
+          test -f CONTRIBUTING.md
+          test -f docs/plugin-catalog.md
+          test -d plugins
