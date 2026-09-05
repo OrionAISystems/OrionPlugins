@@ -1,0 +1,23 @@
+{
+  "action": "create_carryover",
+  "method": "POST",
+  "endpoint": "/v1/actions/carryovers",
+  "headers": {
+    "Authorization": "Bearer <ORION_WARMAP_SERVICE_TOKEN>",
+    "Idempotency-Key": "orion:fixture:create-carryover",
+    "x-correlation-id": "orion-warmap:fixture:create-carryover"
+  },
+  "body": {
+    "sourceItemId": "item-fixture-overdue",
+    "action": "reschedule",
+    "targetDateTime": "2026-09-12T14:00:00.000Z",
+    "notes": "Fixture only; approval is required before execution.",
+    "provenance": {
+      "sourceSystem": "orion",
+      "sourceProposalId": "99999999-9999-4999-8999-999999999999",
+      "sourceEvidenceId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "actorId": "orion",
+      "correlationId": "orion-warmap:fixture:create-carryover"
+    }
+  }
+}

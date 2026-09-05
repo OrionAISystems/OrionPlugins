@@ -1,0 +1,10 @@
+{
+  "name": "@orionplugins/warmap",
+  "version": "0.1.0-experimental",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/contract-validation.test.mjs",
+    "validate": "node scripts/validate.mjs"
+  }
+}

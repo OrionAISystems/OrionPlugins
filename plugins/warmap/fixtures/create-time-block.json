@@ -1,0 +1,30 @@
+{
+  "action": "create_time_block",
+  "method": "POST",
+  "endpoint": "/v1/actions/scheduled-items",
+  "headers": {
+    "Authorization": "Bearer <ORION_WARMAP_SERVICE_TOKEN>",
+    "Idempotency-Key": "orion:fixture:create-time-block",
+    "x-correlation-id": "orion-warmap:fixture:create-time-block"
+  },
+  "body": {
+    "title": "Deep work block",
+    "type": "time_block",
+    "startDateTime": "2026-09-11T13:00:00.000Z",
+    "endDateTime": "2026-09-11T15:00:00.000Z",
+    "timezone": "America/New_York",
+    "workspaceId": "workspace-orion",
+    "campaignId": "campaign-warmap-rebuild",
+    "workType": "deep_work",
+    "priority": "high",
+    "deepWork": true,
+    "objective": "Move the approved WarMap pass forward.",
+    "provenance": {
+      "sourceSystem": "orion",
+      "sourceProposalId": "55555555-5555-4555-8555-555555555555",
+      "sourceEvidenceId": "66666666-6666-4666-8666-666666666666",
+      "actorId": "orion",
+      "correlationId": "orion-warmap:fixture:create-time-block"
+    }
+  }
+}

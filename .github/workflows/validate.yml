@@ -21,3 +21,9 @@ jobs:
           test -f CONTRIBUTING.md
           test -f docs/plugin-catalog.md
           test -d plugins
+
+      - name: Validate experimental WarMap contract
+        shell: bash
+        run: |
+          npm test --prefix plugins/warmap
+          npm run validate --prefix plugins/warmap

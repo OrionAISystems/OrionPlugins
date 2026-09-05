@@ -15,7 +15,11 @@ OrionPlugins is intended to be a durable public home for reusable plugin surface
 ├── docs/
 │   └── plugin-catalog.md
 ├── plugins/
-│   └── .gitkeep
+│   └── warmap/
+│       ├── manifest.json
+│       ├── fixtures/
+│       ├── src/
+│       └── tests/
 ├── .github/
 │   └── workflows/
 │       └── validate.yml
@@ -57,7 +61,16 @@ The exact structure can vary by plugin type, but each plugin should remain indep
 
 ## Current Phase
 
-This repository is in its foundation phase. The initial goal is to establish a public, documented home for future GeoCore, WarMap, and Orion plugin packages without prematurely locking in a package manager, framework, or distribution model.
+This repository is in its foundation phase. `plugins/warmap` is the first experimental contract package. It describes normalized WarMap reads, proposal capability, and the five narrow approval-bound semantic writes without dynamically loading arbitrary plugin code. Orion remains the trusted runtime and WarMap remains the local execution-state authority.
+
+Validate it with:
+
+```bash
+npm test --prefix plugins/warmap
+npm run validate --prefix plugins/warmap
+```
+
+The package contains offline request fixtures only; it does not include credentials, a live connector, or a stable public distribution promise.
 
 ## License
 

@@ -1,0 +1,104 @@
+{
+  "manifestVersion": "0.1.0",
+  "id": "warmap",
+  "name": "WarMap execution contract",
+  "status": "experimental",
+  "trustedRuntime": "Orion",
+  "dynamicCodeLoading": false,
+  "compatibility": {
+    "orion": "^0.1.0",
+    "warmapApi": "stage-2",
+    "warmapSchemaVersion": 1
+  },
+  "capabilities": {
+    "read": [
+      {
+        "id": "today",
+        "method": "GET",
+        "path": "/v1/today",
+        "description": "Read the local-day execution summary."
+      },
+      {
+        "id": "agenda",
+        "method": "GET",
+        "path": "/v1/agenda",
+        "description": "Read recurrence-expanded agenda entries and parent-owned buffer segments."
+      },
+      {
+        "id": "changes",
+        "method": "GET",
+        "path": "/v1/changes",
+        "description": "Read append-only domain-event changes using a stable cursor."
+      },
+      {
+        "id": "state-compatibility",
+        "method": "GET",
+        "path": "/v1/state",
+        "fallbackOnly": true,
+        "description": "Compatibility fallback for older WarMap runtimes."
+      }
+    ],
+    "propose": [
+      {
+        "id": "connector.proposal.generate",
+        "method": "POST",
+        "path": "/v1/planning-drafts",
+        "description": "Create an inspectable WarMap planning proposal without applying it."
+      }
+    ],
+    "write": [
+      {
+        "action": "create_task",
+        "method": "POST",
+        "path": "/v1/actions/tasks",
+        "approvalRequired": true,
+        "idempotencyRequired": true,
+        "provenanceRequired": true
+      },
+      {
+        "action": "create_event",
+        "method": "POST",
+        "path": "/v1/actions/scheduled-items",
+        "bodyType": "event",
+        "approvalRequired": true,
+        "idempotencyRequired": true,
+        "provenanceRequired": true
+      },
+      {
+        "action": "create_time_block",
+        "method": "POST",
+        "path": "/v1/actions/scheduled-items",
+        "bodyType": "time_block",
+        "approvalRequired": true,
+        "idempotencyRequired": true,
+        "provenanceRequired": true
+      },
+      {
+        "action": "update_task_status",
+        "method": "PATCH",
+        "path": "/v1/actions/tasks/:id/status",
+        "approvalRequired": true,
+        "idempotencyRequired": true,
+        "provenanceRequired": true
+      },
+      {
+        "action": "create_carryover",
+        "method": "POST",
+        "path": "/v1/actions/carryovers",
+        "approvalRequired": true,
+        "idempotencyRequired": true,
+        "provenanceRequired": true
+      }
+    ]
+  },
+  "requestHeaders": [
+    "Authorization",
+    "Idempotency-Key",
+    "x-correlation-id"
+  ],
+  "authority": {
+    "orion": "trusted runtime and approval coordinator",
+    "warmap": "local execution state authority",
+    "pluginCode": "not dynamically loaded"
+  }
+}
